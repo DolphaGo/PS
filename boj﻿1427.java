@@ -16,4 +16,4 @@ public class Main {
 		}
 		while(!q.isEmpty()) System.out.print(q.poll());
 	}
-}
+} 
