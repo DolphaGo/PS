@@ -5,7 +5,7 @@ public class boj13460_finish {
 	static int h, w, answer;
 	static char[][] map;
 	static boolean[][][][] visit;
-
+  
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
