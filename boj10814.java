@@ -12,7 +12,6 @@ public class Main {
 				return Integer.compare(o1[1], o2[1]);
 			}
 		});
-		
 		String names[]=new String[n];
 		for(int i=0;i<n;i++) {
 			st=new StringTokenizer(br.readLine());
