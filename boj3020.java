@@ -21,14 +21,12 @@ public class boj3020 {
 		int min=Integer.MAX_VALUE;
 		int cnt=0;
 		for(int i=1;i<=h;i++) { //높이
-			int val=bottom[i]+top[h-i];
+			int val=bottom[i]+top[h+1-i];
 			if(val<min) {
 				min=val;
 				cnt=1;
 			}else if(val==min) ++cnt;
 		}
-		System.out.println(Arrays.toString(top));
-		System.out.println(Arrays.toString(bottom));
 		System.out.println(min+" "+cnt);
 	}
 }
