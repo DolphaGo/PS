@@ -12,7 +12,7 @@ public class boj18353_2 {
 			data[i] = Integer.parseInt(st.nextToken());
 
 		dp[0]=1;
-		int res=0;
+		int res=1;
 		for (int i = 1; i < n; i++) {
 			dp[i]=1;
 			for(int j=0;j<i;j++) {
