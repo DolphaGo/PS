@@ -1,7 +1,7 @@
-public class boj15596 {
-	long sum(int[] a) {
-		long ans=0;
-		for(int num:a) val+=num;
-		return val;
-	}
+public class Test {
+    long sum(int[] a) {
+        long ans = 0;
+        for(int val:a) ans+=val;
+        return ans;
+    }
 }
