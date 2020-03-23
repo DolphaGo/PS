@@ -16,6 +16,7 @@ public class Main {
 			int r2 = Integer.parseInt(st.nextToken());
 			
 			double r=getdis(y1,x1,y2,x2);
+			
 			int answer=0;
 			if(r>r1+r2) {
 				answer=0;
