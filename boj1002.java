@@ -14,10 +14,11 @@ public class Main {
 			int x2 = Integer.parseInt(st.nextToken());
 			int y2 = Integer.parseInt(st.nextToken());
 			int r2 = Integer.parseInt(st.nextToken());
-			
-			double r=getdis(y1,x1,y2,x2);
+			 
+			double r=getdis(y1,x1,y2,x2); 
 			
 			int answer=0;
+			
 			if(r>r1+r2) {
 				answer=0;
 			}else if(r==r1+r2) {
@@ -36,6 +37,7 @@ public class Main {
 			System.out.println(answer);
 		}
 	}
+	
 	static double getdis(int y1,int x1,int y2,int x2) {
 		return Math.sqrt(Math.pow(y1-y2, 2)+Math.pow(x1-x2,2));
 	}
