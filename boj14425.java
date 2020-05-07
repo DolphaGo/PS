@@ -12,6 +12,7 @@ public class boj14425 {
 			String s=br.readLine();
 			map.put(s,true);
 		}
+		
 		int answer=0;
 		for(int i=0;i<m;i++) {
 			String s=br.readLine();
