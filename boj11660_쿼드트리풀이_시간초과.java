@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class boj11660_시간초과뜬코드 {
+public class boj11660_쿼드트리풀이_시간초과 {
 	static int n;
 	static int arr[][], tree[];
 
