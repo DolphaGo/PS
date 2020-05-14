@@ -7,8 +7,6 @@ public class line01 {
 		System.out.println(solution(inputString));
 	}
 
-	static ArrayList<ArrayList<String>> list = new ArrayList<>();
-
 	static int solution(String inputString) {
 		Stack<Integer> stack=new Stack<>();
 		int cnt=0;
