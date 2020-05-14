@@ -25,7 +25,7 @@ public class line01 {
 			}
 		}
 		
-		if(flag) return cnt;
+		if(flag&&stack.size()==0) return cnt;
 		else return -1;
 	}
 }
