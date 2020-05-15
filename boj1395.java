@@ -3,16 +3,17 @@ import java.util.*;
 
 public class boj1395 {
 	static int n;
-	static int tree[], lazy[];
+	static int tree[];
+	static boolean lazy[];
 
 	static void LazyUpdate(int node, int start, int end) {
-		if (lazy[node] != 0) {
-			tree[node] = lazy[node] - tree[node];
+		if (lazy[node]) {
+			tree[node] = (end-start+1)-tree[node];
 			if (start != end) {
-				lazy[node * 2] = ((start + end) / 2 - start + 1) - lazy[node*2];
-				lazy[node * 2 + 1] = (end - ((start + end) / 2 + 1) + 1)- lazy[node*2+1];
+				lazy[node * 2] =!lazy[node*2];
+				lazy[node * 2 + 1] =!lazy[node*2+1];
 			}
-			lazy[node] = 0;
+			lazy[node] = false;
 		}
 	}
 
@@ -24,14 +25,15 @@ public class boj1395 {
 		if (left <= start && end <= right) {
 			tree[node] = (end - start + 1) - tree[node];
 			if (start != end) {
-				lazy[node * 2] = ((start + end) / 2 - start + 1) - lazy[node*2];
-				lazy[node * 2 + 1] = (end - ((start + end) / 2 + 1) + 1) -lazy[node*2+1];
+				lazy[node * 2] = !lazy[node*2];
+				lazy[node * 2 + 1]= !lazy[node*2+1];
 			}
 			return;
 		}
-
-		update(node * 2, start, (start + end) / 2, left, right);
-		update(node * 2 + 1, (start + end) / 2 + 1, end, left, right);
+		
+		int mid=(start+end)>>1;
+		update(node * 2, start, mid, left, right);
+		update(node * 2 + 1, mid + 1, end, left, right);
 		tree[node]=tree[node*2]+tree[node*2+1];
 	}
 
@@ -44,8 +46,9 @@ public class boj1395 {
 			return tree[node];
 		}
 
-		return sum(node * 2, start, (start + end) / 2, left, right)
-				+ sum(node * 2 + 1, (start + end) / 2 + 1, end, left, right);
+		int mid=(start+end)>>1;
+		return sum(node * 2, start, mid, left, right)
+				+ sum(node * 2 + 1, mid + 1, end, left, right);
 
 	}
 
@@ -57,7 +60,7 @@ public class boj1395 {
 		n = Integer.parseInt(st.nextToken());
 		int h = (int) Math.ceil(Math.log(n) / Math.log(2));
 		tree = new int[1 << h + 1];
-		lazy = new int[1 << h + 1];
+		lazy = new boolean[1 << h + 1];
 
 		int m = Integer.parseInt(st.nextToken());
 
