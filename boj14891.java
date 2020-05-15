@@ -44,15 +44,11 @@ public class boj14891 {
 				int[] p=q.poll();
 				if(p[1]==1) {
 					char tmp=arr[p[0]][7];
-					for(int idx=6;idx>=0;--idx) {
-						arr[p[0]][idx+1]=arr[p[0]][idx];
-					}
+					for(int idx=6;idx>=0;--idx) arr[p[0]][idx+1]=arr[p[0]][idx];
 					arr[p[0]][0]=tmp;
 				}else {
 					char tmp=arr[p[0]][0];
-					for(int idx=1;idx<=7;idx++) {
-						arr[p[0]][idx-1]=arr[p[0]][idx];
-					}
+					for(int idx=1;idx<=7;idx++) arr[p[0]][idx-1]=arr[p[0]][idx];
 					arr[p[0]][7]=tmp;
 				}
 			}
