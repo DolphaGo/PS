@@ -27,7 +27,7 @@ public class boj14890 {
 				if(prev==next) continue;
 				if(prev==next+1) {
 					for(int xx=x+1;xx<=x+L;xx++) {
-						if(xx>=N||map[y][xx]!=next||visit[y][xx]) {
+						if(xx>=N||map[y][xx]!=next) {
 							flag=false;
 							break loop;
 						}else visit[y][xx]=true;
