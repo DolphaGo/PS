@@ -72,7 +72,7 @@ public class boj17825 {
 					if(horse[cur][0]==other[0]) {
 						if(horse[cur][1]==other[1]) return 0;
 					}
-					//다른 맵에서 같은 위치에 있을 때 => 즉, 분기점+공통경로(25,30,35,40)
+					//다른 맵에서 같은 위치에 있을 때 => 즉, 공통경로(25,30,35,40)
 					else {
 						if(isRange(horse[cur][0],horse[cur][1])&&map[horse[cur][0]][horse[cur][1]]==map[other[0]][other[1]]) return 0;
 					}
