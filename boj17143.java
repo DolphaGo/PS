@@ -64,9 +64,7 @@ class boj17143{
 			while(!delete.isEmpty()) {
 				hash.remove(delete.poll());
 			}
-			for(int y=1;y<=h;y++) {
-				map[y]=newmap[y].clone();
-			}
+			map=newmap;
 		}
 		System.out.println(answer);
 	}
