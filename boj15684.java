@@ -5,7 +5,6 @@ public class boj15684 {
 	static int n, m, h;
 	static int[][] map;
 	static int answer;
-	static ArrayList<int[]> list = new ArrayList<int[]>();
 
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
