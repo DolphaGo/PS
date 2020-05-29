@@ -21,25 +21,26 @@ public class boj15684 {
 			map[a][b] = 1;// 우측
 			map[a][b + 1] = 2;// 좌측
 		}
-        answer = 4;
-        go(0, 0);
-        System.out.println(answer == 4 ? -1 : answer);
+		answer = 4;
+		go(0, 0);
+		System.out.println(answer == 4 ? -1 : answer);
 	}
 
 	static void go(int sy, int conn) {
-        if(conn>=answer) return;
-		if(OK()) {
-			answer=Math.min(answer, conn);
+		if (conn >= answer)
+			return;
+		if (OK()) {
+			answer = Math.min(answer, conn);
 			return;
 		}
-		for(int y=sy;y<h;y++) {
-			for(int x=0;x<n-1;x++) {
-				if(map[y][x+1]==0&&map[y][x]==0&&conn<3) {
-					map[y][x]=1;
-					map[y][x+1]=2;
-					go(y,conn+1);
-					map[y][x+1]=0;
-					map[y][x]=0;
+		for (int y = sy; y < h; y++) {
+			for (int x = 0; x < n - 1; x++) {
+				if (map[y][x + 1] == 0 && map[y][x] == 0 && conn < 3) {
+					map[y][x] = 1;
+					map[y][x + 1] = 2;
+					go(y, conn + 1);
+					map[y][x + 1] = 0;
+					map[y][x] = 0;
 				}
 			}
 		}
