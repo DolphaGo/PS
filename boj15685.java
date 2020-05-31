@@ -43,7 +43,4 @@ class boj15685 {
 		System.out.println(answer);
 		
 	}
-	static int pow(int a,int b) {
-		return b==0?1:a*pow(a,b-1);
-	}
 }
