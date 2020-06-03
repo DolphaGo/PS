@@ -55,7 +55,6 @@ class swea5656 {
 			int wy=0;
 			while(wy<h&&tmp[wy][wx]==0) ++wy;
 			if(wy==h) continue;
-			
 			q.add(new int[] {wy,wx,tmp[wy][wx]});
 			tmp[wy][wx]=0;
 			while(!q.isEmpty()) {
