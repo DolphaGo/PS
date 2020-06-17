@@ -10,7 +10,6 @@ public class boj1446 {
 		int n = Integer.parseInt(st.nextToken());
 		d = Integer.parseInt(st.nextToken());
 		
-		
 		for(int i=0;i<n;i++) {
 			st=new StringTokenizer(br.readLine());
 			int a=Integer.parseInt(st.nextToken());
@@ -20,14 +19,6 @@ public class boj1446 {
 			if(b-a<=c) continue; //지름길로서의 의미가 X
 			list.add(new int[] {a,b,c});
 		}
-		
-		Collections.sort(list,new Comparator<int[]>() {
-			public int compare(int[] o1,int[] o2) {
-				if(o1[0]==o2[0]) return Integer.compare(o1[1],o2[1]);
-				return Integer.compare(o1[0],o2[0]);
-			}
-		});
-		
 		answer=Integer.MAX_VALUE;
 		go(0,0);
 		System.out.println(answer);
