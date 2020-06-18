@@ -5,7 +5,6 @@ public class boj11779_PQ {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
-		
 		int n=Integer.parseInt(br.readLine());
 		int m=Integer.parseInt(br.readLine());
 		ArrayList<int[]> list[]=new ArrayList[n+1];
