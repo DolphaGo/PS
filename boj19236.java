@@ -82,7 +82,6 @@ public class boj19236 {
 								break loop;
 							}
 						}
-						break loop;
 					}
 				}
 			}
