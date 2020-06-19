@@ -22,28 +22,26 @@ public class boj10282_0620_ver2 {
 				list[b].add(new int[] {a,s});
 			}
 			
-			
-			PriorityQueue<int[]> q=new PriorityQueue<int[]>(new Comparator<int[]>() {
-				public int compare(int[] o1,int[] o2) {
-					return Integer.compare(o1[1],o2[1]);
-				}
-			});
+			//그냥 Q를 쓰든 pq를 쓰든 이건 완탐이라서 가능
+			Queue<Integer> q=new LinkedList<Integer>();
+//			PriorityQueue<int[]> q=new PriorityQueue<int[]>(new Comparator<int[]>() {
+//				public int compare(int[] o1,int[] o2) {
+//					return Integer.compare(o1[1],o2[1]);
+//				}
+//			});
 			int[] dist=new int[n+1];
 			Arrays.fill(dist, Integer.MAX_VALUE);
 			dist[c]=0;
-			q.add(new int[] {c,0});
+			q.add(c);
 			while(!q.isEmpty()) {
-				int[] p=q.poll();
-				int now=p[0];
-				//주석하든 안하든 상관X 완탐이라서 이건
-				//if(dist[now]<p[1]) continue;
+				int now=q.poll();
 				
 				for(int j=0;j<list[now].size();j++) {
 					int[] np=list[now].get(j);
 					int next=np[0];
 					if(dist[next]>dist[now]+np[1]) {
 						dist[next]=dist[now]+np[1];
-						q.add(new int[] {next,dist[next]});
+						q.add(next);
 					}
 				}
 			}
