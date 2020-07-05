@@ -32,10 +32,10 @@ class Solution {
 		
 		//BFS에서 단 한번만 방문하게 하기 위해 선언한 방문배열입니다.
 		boolean visit[]=new boolean[n];
-		int len=0;
+		int cnt=0;
 		if(!check[0]) {
-			//Queue에 넣을 때마다 방문을 했다는 뜻이므로 len을 증가해줍니다.
-			++len;
+			//Queue에 넣을 때마다 방문을 했다는 뜻이므로 cnt을 증가해줍니다.
+			++cnt;
 			q.add(0); 
 			visit[0]=true;
 		}
@@ -52,7 +52,7 @@ class Solution {
 						//이전에 방문해야 하는 곳을 이미 방문을 했다면
 						//제약조건이 없는 방과 동일하게 탐색해주면 됩니다.
 						if(visit[there]) {
-							++len;
+							++cnt;
 							q.add(next);
 							visit[next]=true;
  							//사실 visit처리로 인해 단 한번만 방문하므로 check해제는 필요 없습니다.
@@ -61,13 +61,13 @@ class Solution {
 					}else {
 						visit[next]=true;
 						q.add(next);
-						++len;
+						++cnt;
 					}
 					
 					//wait list를 탐색(연결성 없기에 가능)
 					if(wait.get(next)!=null) {
 						int val=wait.get(next);
-						++len;
+						++cnt;
 						q.add(val);
 						visit[val]=true;
 						wait.remove(next);
@@ -75,6 +75,6 @@ class Solution {
 				}
 			}
 		}
-		return len==n?true:false;
+		return cnt==n?true:false;
 	}
 }
