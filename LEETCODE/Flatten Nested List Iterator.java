@@ -1,7 +1,6 @@
 public class NestedIterator implements Iterator<Integer> {
     List<Integer> list=new ArrayList<>();
     int idx=0;
-
     public NestedIterator(List<NestedInteger> nestedList) {
         go(nestedList);
     }
