@@ -24,7 +24,4 @@ class swea5789 {
 		}
 		System.out.print(sb);
 	}
-	static int pow(int a,int b) {
-		return b==0?1:a*pow(a,b-1);
-	}
 }
