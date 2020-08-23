@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class boj2638 {
+public class Main {
 	static int h, w, cheeze;
 	static int[][] map, visit;
 	static int dy[] = { -1, 1, 0, 0 };
@@ -15,13 +15,14 @@ public class boj2638 {
 		h = Integer.parseInt(st.nextToken());
 		w = Integer.parseInt(st.nextToken());
 		cheeze = 0; // 치즈 조각을 셀 변수
-		map = new int[h + 2][w + 2]; // 사이드에 빈 공간을 줍니다.
-		visit = new int[h + 2][w + 2];
-		for (int y = 1; y <= h; y++) {
+		map = new int[h][w]; // 사이드에 빈 공간을 줍니다.
+		visit = new int[h][w];
+		for (int y = 0; y < h; y++) {
 			st = new StringTokenizer(br.readLine());
-			for (int x = 1; x <= w; x++) {
+			for (int x = 0; x < w; x++) {
 				map[y][x] = Integer.parseInt(st.nextToken());
-				if (map[y][x] == 1) ++cheeze;
+				if (map[y][x] == 1)
+					++cheeze;
 			}
 		}
 
@@ -56,9 +57,9 @@ public class boj2638 {
 				if (isRange(ny, nx) && visit[ny][nx] >= 0) {
 					if (map[ny][nx] == 1) {
 						visit[ny][nx]++;
-						//공기가 2번이상 맞닿은 것들은 제거 대상
-						if (visit[ny][nx] >= 2)	{
-							visit[ny][nx]=-1; //지움
+						// 공기가 2번이상 맞닿은 것들은 제거 대상
+						if (visit[ny][nx] >= 2) {
+							visit[ny][nx] = -1; // 지움
 							rm.add(new int[] { ny, nx });
 						}
 					} else {
@@ -71,6 +72,6 @@ public class boj2638 {
 	}
 
 	static boolean isRange(int y, int x) {
-		return y >= 0 && x >= 0 && y <= h+1 && x <= w+1;
+		return y >= 0 && x >= 0 && y < h && x < w;
 	}
 }
