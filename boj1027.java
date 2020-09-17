@@ -13,7 +13,7 @@ public class Main {
 
         int answer=0;
         for(int i=0;i<n;i++){
-            int left=0,right=0;
+              int left=0,right=0;
             double min=1e9+1;
             for(int j=i-1;j>=0;j--){
                 double res=1.0*(arr[i]-arr[j])/(i-j);
