@@ -16,17 +16,9 @@ public class Main {
         Arrays.sort(s, new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
-               int idx1=0;
-               int idx2=0;
-               while(o1.charAt(idx1)==o2.charAt(idx2)){
-                   if(idx1+1<o1.length()) idx1++;
-                   if(idx2+1<o2.length()) idx2++;
-                   if(idx1==o1.length()-1 || idx2==o2.length()-1) break;
-               }
-                char c1=o1.charAt(idx1);
-                char c2=o2.charAt(idx2);
-                if(c1!=c2) return Character.compare(c2, c1);
-                else return Integer.compare(o1.length(),o2.length());
+                String a=o1+o2;
+                String b=o2+o1;
+                return b.compareTo(a);
             }
         });
 
