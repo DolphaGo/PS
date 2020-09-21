@@ -31,6 +31,7 @@ public class Main {
         int m=(start+end)>>1;
         update(node*2,start,m,left,right,w);
         update(node*2+1,m+1,end,left,right,w);
+        tree[node]=tree[node*2]+tree[node*2+1];
     }
 
     static int query(int node,int start,int end,int left,int right){
