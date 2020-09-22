@@ -19,6 +19,7 @@ public class Main {
         lazyUpdate(node,start,end);
         if(start>right || end < left) return ;
 
+        //사실상 리프노드에만 적용됨. left==right로만 들어오기 때문(리프노드 업데이트)
         if(left<=start && end <=right){
             tree[node] += (end-start+1)*w;
             if(start!=end){
@@ -27,7 +28,6 @@ public class Main {
             }
             return;
         }
-
         int m=(start+end)>>1;
         update(node*2,start,m,left,right,w);
         update(node*2+1,m+1,end,left,right,w);
@@ -77,10 +77,11 @@ public class Main {
             int i=Integer.parseInt(st.nextToken());
             if(q==1){
                 int w=Integer.parseInt(st.nextToken());
-                update(1,1,n,l[i],r[i],w);
-            }else sb.append(query(1,1,n,l[i],l[i])).append("\n");
+                update(1,1,n,l[i],l[i],w);
+            }else {
+                sb.append(query(1,1,n,l[i],r[i])).append("\n");
+            }
         }
-
         System.out.print(sb);
     }
 }
