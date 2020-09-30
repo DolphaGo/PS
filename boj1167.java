@@ -25,8 +25,7 @@ public class Main {
         }
 
         int x=bfs(1)[0];
-        int answer=bfs(x)[1];
-        System.out.println(answer);
+        System.out.println(bfs(x)[1]);
     }
     static int[] bfs(int start){
         boolean[] visit=new boolean[v+1];
