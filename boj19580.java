@@ -8,51 +8,50 @@ public class Main {
         int n=Integer.parseInt(st.nextToken());
         int m=Integer.parseInt(st.nextToken());
 
+
+        //구매할 수 있는 최대 가격이 낮은순으로, 최소 가격은 높은 순으로 정렬 : (구매할 수 있는 범위가 좁은 순으로 오름차순)
         PriorityQueue<long[]> pq=new PriorityQueue<>(new Comparator<long[]>() {
             @Override
             public int compare(long[] o1, long[] o2) {
                 if(o1[1]==o2[1]) return Long.compare(o2[0],o1[0]);
-                else return Long.compare(o2[1],o1[1]);
+                else return Long.compare(o1[1],o2[1]);
             }
-        });
+        });;
+
 
         for(int i=0;i<n;i++){
             st=new StringTokenizer(br.readLine());
             long l=Long.parseLong(st.nextToken());
             long r=Long.parseLong(st.nextToken());
-            pq.add(new long[]{l,r});
+            pq.offer(new long[]{l,r});
         }
 
-        long[][] mask=new long[m][2];
+
+        TreeMap<Long,Integer> mask=new TreeMap<>();
         for(int i=0;i<m;i++){
             st=new StringTokenizer(br.readLine());
-            mask[i][0]=Long.parseLong(st.nextToken());
-            mask[i][1]=Long.parseLong(st.nextToken());
+            long price=Long.parseLong(st.nextToken());
+            int count=Integer.parseInt(st.nextToken());
+            if(mask.containsKey(price)) mask.replace(price,mask.get(price)+count);
+            else mask.put(price,count);
         }
 
-        Arrays.sort(mask, new Comparator<long[]>() {
-            @Override
-            public int compare(long[] o1, long[] o2) {
-                return Long.compare(o2[0],o1[0]);
-            }
-        });
-
         int answer=0;
-        for(int i=0;i<n;i++){
-            long x=mask[i][0];
-            long cnt=mask[i][1];
-            System.out.println("현재 마스크 가격:"+x);
-            while(cnt>0 && !pq.isEmpty()){
-                System.out.println("남은 개수 :"+cnt);
-                long l=pq.peek()[0];
-                long r=pq.peek()[1];
-                if(r<x) break;
-                if(l<=x){
-                    System.out.println(l+"~"+r+"을 가진애한테 팔게");
-                    ++answer;
-                    --cnt;
-                }
-                pq.poll();
+        while(!pq.isEmpty()&&!mask.isEmpty()){
+            long[] p=pq.poll();
+            long l=p[0];
+            long r=p[1];
+
+            //lowerbound
+            Map.Entry<Long,Integer> x=mask.ceilingEntry(l); // 최저 가격을 기준으로 탐색한다.
+            if(x==null) continue;
+
+            if(x.getKey()<=r){
+                int count=x.getValue();
+                ++answer;
+                --count;
+                if(count==0) mask.remove(x.getKey());
+                else mask.replace(x.getKey(), count);
             }
         }
         System.out.println(answer);
