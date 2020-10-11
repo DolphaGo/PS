@@ -50,11 +50,9 @@ public class Main {
                 int ny=y+dy[d];
                 int nx=x+dx[d];
 
-                if(isRange(ny,nx)){
-                    if(map[ny][nx]==0) whiteMove(i,y,x,ny,nx);
-                    else if(map[ny][nx]==1) redMove(i,y,x,ny,nx);
-                    else blueMove(i,y,x);
-                }else blueMove(i,y,x);
+                if(!isRange(ny,nx) || map[ny][nx]==2) blueMove(i,y,x);
+                else if(map[ny][nx]==0) whiteMove(i,y,x,ny,nx);
+                else redMove(i,y,x,ny,nx);
 
                 if(over4()) return answer;
             }
