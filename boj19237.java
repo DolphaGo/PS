@@ -3,22 +3,13 @@ import java.io.*;
 
 public class Main {
     static class Info{
-        int y;
-        int x;
-        int dir;
-        Info(){};
-        public void setYX(int y,int x){
-            this.y=y;
-            this.x=x;
-        }
+        int y,x,dir;
+        public void setYX(int y,int x){ this.y=y; this.x=x; }
         public void setDir(int dir){
             this.dir=dir;
         }
-        public String toString(){
-            return y+","+x+","+dir;
-        }
     }
-    static int n,m,k,answer;
+    static int n,m,k;
     static int[][] map,time;
     static int[][][] priority;
     static Info[] infos;
@@ -63,12 +54,9 @@ public class Main {
                 }
             }
         }
-
-        answer=-1;
-        simulation();
-        System.out.println(answer);
+        System.out.println(simulation());
     }
-    static void simulation(){
+    static int simulation(){
         int t=0;
         ArrayList<Integer> blank=new ArrayList<>();
         ArrayList<Integer> my=new ArrayList<>();
@@ -87,17 +75,11 @@ public class Main {
                     int ny=y+dy[i];
                     int nx=x+dx[i];
                     if(isRange(ny,nx)){
-                        if(map[ny][nx]==0){
-                            //1. 아무 냄새가 없는 칸
-                            blank.add(i);
-                        }else if(map[ny][nx]==map[y][x]){
-                            //2. 없으면 자신의 냄새가 있는 칸
-                            my.add(i);
-                        }
+                        if(map[ny][nx]==0) blank.add(i); //1. 아무 냄새가 없는 칸
+                        else if(map[ny][nx]==map[y][x]) my.add(i);//2. 없으면 자신의 냄새가 있는 칸
                     }
                 }
-                //2-1. 여러개면 특정 우선순위를 따른다.
-                //현재 방향에 따라 다음을 선택
+                //2-1. 여러개면 특정 우선순위를 따른다.(현재 방향에 따라 다음을 선택)
                 if(!blank.isEmpty()){
                     int[] p=priority[num][d];
                     for(int i=1;i<=4;i++){
@@ -121,8 +103,7 @@ public class Main {
                         }
                     }
                 }
-                blank.clear();
-                my.clear();
+                blank.clear(); my.clear();
             }
             while(!buffer.isEmpty()){
                 int[] p=buffer.poll();
@@ -154,12 +135,9 @@ public class Main {
             for(int i=1;i<=m;i++){
                 if(infos[i].y!=-1) ++cnt;
             }
-
-            if(cnt==1) {
-                answer=t;
-                break;
-            }
+            if(cnt==1) return t;
         }
+        return -1;
     }
     static boolean isRange(int y,int x){
         return 0<=y&&y<n&&0<=x&&x<n;
