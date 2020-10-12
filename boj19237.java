@@ -105,25 +105,7 @@ public class Main {
                 }
                 blank.clear(); my.clear();
             }
-            while(!buffer.isEmpty()){
-                int[] p=buffer.poll();
-                int num=p[0];
-                int ny=p[1];
-                int nx=p[2];
-                int ndir=p[3];
-                if(map[ny][nx]==0){ //빈 공간이었다면 그대로 insert
-                    map[ny][nx]=num;
-                    time[ny][nx]=k+1;
-                    infos[num].setYX(ny,nx);
-                    infos[num].setDir(ndir);
-                }else if(map[ny][nx]==num){ // 자신의 자취로 돌아간다면
-                    time[ny][nx]=k+1; //해당 위치 시간 갱신
-                    infos[num].setYX(ny,nx);
-                    infos[num].setDir(ndir);
-                }else{//다른 상어가 미리 왔다면(낮은 번호부터 진행하기 때문)
-                    infos[num].setYX(-1,-1); // 장외
-                }
-            }
+
             for(int y=0;y<n;y++){
                 for(int x=0;x<n;x++){
                     if(time[y][x]>0) {
@@ -131,6 +113,24 @@ public class Main {
                     }
                 }
             }
+
+            //buffer에는 빈공간 아니면, 자신의 자취 냄새가 담겨있음.
+            while(!buffer.isEmpty()){
+                int[] p=buffer.poll();
+                int num=p[0];
+                int ny=p[1];
+                int nx=p[2];
+                int ndir=p[3];
+                if(map[ny][nx]==0 || map[ny][nx]==num){ //빈 공간이거나 자신의 자취라면 그대로 insert
+                    map[ny][nx]=num;
+                    time[ny][nx]=k;
+                    infos[num].setYX(ny,nx);
+                    infos[num].setDir(ndir);
+                }else{//다른 상어가 미리 왔다면(낮은 번호부터 진행하기 때문)
+                    infos[num].setYX(-1,-1); // 장외
+                }
+            }
+
             int cnt=0;
             for(int i=1;i<=m;i++){
                 if(infos[i].y!=-1) ++cnt;
