@@ -45,16 +45,8 @@ public class Main {
                 answer+=val;
                 val=getScore(B);
             }
-            System.out.println("======="+i+"번째========");
-            for(int yy=0;yy<6;yy++) {
-               for(int xx=0;xx<4;xx++) {
-                  System.out.print(A[yy][xx]+" ");
-               }
-               System.out.println();
-            }
             clean(A); clean(B);
         }
-       
         
         System.out.println(answer);
         int count=0;
@@ -116,6 +108,7 @@ public class Main {
                     }else if(x+1<4&&arr[y][x]==arr[y][x+1]) {//type 2
                         arr[y][x]=arr[y][x+1]=0;
                         Garo(arr,y,x,2,mark);
+                        x++;
                     }else { // type 1
                         arr[y][x]=0;
                         Sero(arr,y,x,1,mark); //해당 위치에서 놓고
