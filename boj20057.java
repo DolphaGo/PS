@@ -37,15 +37,10 @@ public class Main {
             int ny=y+dy[d];
             int nx=x+dx[d];
             int sand=map[ny][nx];
-            //5% 처리
-            int ny05=y+3*dy[d];
-            int nx05=x+3*dx[d];
-            int sand05=(int)(sand*0.05);
-            if(!isRange(ny05,nx05)) res+=sand05;
-            else map[ny05][nx05]+=sand05;
 
             int sand10=(int)(sand*0.1);
             int sand07=(int)(sand*0.07);
+            int sand05=(int)(sand*0.05);
             int sand02=(int)(sand*0.02);
             int sand01=(int)(sand*0.01);
 
@@ -94,6 +89,12 @@ public class Main {
                     else map[ny02][nx02]+=sand02;
                 }
             }
+            //5% 처리
+            int ny05=y+3*dy[d];
+            int nx05=x+3*dx[d];
+            if(!isRange(ny05,nx05)) res+=sand05;
+            else map[ny05][nx05]+=sand05;
+
             //a 지점
             int ay=ny+dy[d];
             int ax=nx+dx[d];
