@@ -1,3 +1,4 @@
 # ALGORITHM
 
-> ### My Blog ------> <a href="http://blog.naver.com/adamdoha">Here</a> 
+> ### I explain HOW I solved the problems-----> <a href="http://blog.naver.com/adamdoha">Here</a> 
+
