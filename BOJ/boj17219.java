@@ -15,7 +15,6 @@ public class Main {
             String pass=st.nextToken();
             map.put(site,pass);
         }
-
         StringBuilder sb=new StringBuilder();
         for(int i=0;i<m;i++){
             String site=br.readLine();
