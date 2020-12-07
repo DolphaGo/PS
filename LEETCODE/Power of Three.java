@@ -5,6 +5,7 @@ class Solution {
             if(n%3!=0) return false;
             n/=3;
         }
+
         return true;
     }
 }
