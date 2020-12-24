@@ -6,32 +6,13 @@ class Solution {
 
         int answer=0;
         for(int i=0;i<s.length();i++){
-            char c=s.charAt(i);
-            boolean check=false;
-            if(i+1<s.length()){
-                char next=s.charAt(i+1);
-                int number=getNumber(c,next);
-                if(number!=0) {
-                    check=true;
-                    i++;
-                }
-                answer+=number;
-            }
-            if(!check) answer+=map.get(c);
+            int cur=map.get(s.charAt(i));
+            int next=i+1<s.length()?map.get(s.charAt(i+1)):0;
+            if(cur<next){
+                answer+=next-cur;
+                i++;
+            }else answer+=cur;
         }
         return answer;
-    }
-    static int getNumber(char c,char next){
-        if(c=='I'){
-            if(next=='V') return 4;
-            if(next=='X') return 9;
-        }else if(c=='X'){
-            if(next=='L') return 40;
-            if(next=='C') return 90;
-        }else if(c=='C'){
-            if(next=='D') return 400;
-            if(next=='M') return 900;
-        }
-        return 0;
     }
 }
