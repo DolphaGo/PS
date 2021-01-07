@@ -13,7 +13,7 @@ class Solution {
             String pattern = st.nextToken();
             int[] pi = new int[pattern.length()];
             for (int j = 0, i = 1; i < pattern.length(); i++) {
-                while (j > 0 && pattern.charAt(i) != pattern.charAt(j)) { j = pi[i - 1]; }
+                while (j > 0 && pattern.charAt(i) != pattern.charAt(j)) { j = pi[j - 1]; }
                 if (pattern.charAt(i) == pattern.charAt(j)) { pi[i] = ++j; }
             }
             int answer = 0;
