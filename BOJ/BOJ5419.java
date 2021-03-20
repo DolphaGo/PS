@@ -59,8 +59,6 @@ public class Main {
                 list.add(new Point(x, y));
             }
             int[] arr=new int[4];
-            Arrays.sort(arr); // 느린 놈
-
             list.sort((o1, o2) -> Integer.compare(o2.y, o1.y)); // 빠른 놈
             int size = 0;
             int prev = Integer.MIN_VALUE;
