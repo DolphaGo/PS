@@ -22,6 +22,7 @@ class Main {
         }
         System.out.print(sb);
     }
+    
     static void setData(){
         int idx=0;
         PriorityQueue<Node> pq=new PriorityQueue<>(new Comparator<Node>() {
