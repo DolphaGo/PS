@@ -32,11 +32,7 @@ class Solution {
         }
 
         Collections.sort(list);
-        String[] answer = new String[list.size()];
-        for (int i = 0; i < answer.length; i++) {
-            answer[i] = list.get(i);
-        }
-        return answer;
+        return list.toArray(new String[list.size()]);
     }
 
     private List<String> getCombs(final char[] arr, final int count) {
