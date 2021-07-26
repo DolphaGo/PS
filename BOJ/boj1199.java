@@ -1,71 +1,69 @@
 import java.util.*;
 import java.io.*;
 
-public class boj1199 {
-	static int n,all;
-	static StringBuilder answer=new StringBuilder();
-	static int[][] arr;
-	static int[] visit,degree;
+public class Main {
+	static StringBuilder answer = new StringBuilder();
+	static int[][] connect;
+	static boolean[] visit;
+
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
-		n=Integer.parseInt(br.readLine());
-		arr=new int[n+1][n+1];
-		degree=new int[n+1];
-		all=0;
-		
-		for(int y=1;y<=n;y++) {
-			st=new StringTokenizer(br.readLine());
-			for(int x=1;x<=n;x++) {
-				int num=Integer.parseInt(st.nextToken());
-				arr[y][x]=num;
-				
-				all+=num;
-				
-				degree[y]+=num;
-				degree[x]+=num;
+		int n = Integer.parseInt(br.readLine());
+		connect = new int[n + 1][n + 1];
+
+		for (int y = 1; y <= n; y++) {
+			st = new StringTokenizer(br.readLine());
+			int sum = 0;
+			for (int x = 1; x <= n; x++) {
+				connect[y][x] = Integer.parseInt(st.nextToken());
+				sum += connect[y][x];
+			}
+			if (sum % 2 != 0) {
+				System.out.println(-1);
+				return;
 			}
 		}
-		all/=2;
-		visit=new int[all+1];
-		boolean Euler=true;
-		
-		for(int i=1;i<=n;i++) {
-			degree[i]/=2;
-			if(degree[i]%2!=0) {
-				Euler=false;
-				break;
+
+		int id = 0;
+		Queue<int[]>[] q = getQueues(n);
+
+		for (int i = 1; i <= n; i++) {
+			for (int j = i + 1; j <= n; j++) {
+				while (connect[i][j] > 0) {
+					connect[i][j]--;
+					id++;
+					q[i].add(new int[] { j, id }); // i->j 의 간선 번호
+					q[j].add(new int[] { i, id }); // j->i 의 간선 번호
+				}
 			}
 		}
-		
-		if(!Euler) {
-			System.out.println(-1);
-		}else {
-			visit[0]=1;
-			go(1,1,1);
-			System.out.println(answer);
-		}
+
+		visit = new boolean[id + 1];
+		dfs(q, 1); // 1번부터 시작
+		System.out.println(answer);
 	}
-	
-	static void go(int v,int s,int start) {
-		if(s==all+1) {
-			if(v==1) {
-				for(int i=0;i<=all;i++) answer.append(visit[i]+" ");
-				System.out.println(answer);
-				System.exit(0);
+
+	private static void dfs(final Queue<int[]>[] q, final int cur) {
+		while (true) {
+			while (!q[cur].isEmpty() && visit[q[cur].peek()[1]]) {
+				q[cur].poll(); // 이미 체크한 간선 번호는 queue에서 빼줍니다.
 			}
-			return;
+
+			if (q[cur].isEmpty()) { break; }
+
+			int[] p = q[cur].poll(); // { next, id } : cur -> next인 곳과 해당 간선의 번호
+			visit[p[1]] = true;
+			dfs(q, p[0]); // next dfs
 		}
-		for(int i=1;i<=n;i++) {
-			if(arr[v][i]!=0) {
-				--arr[v][i];
-				--arr[i][v];
-				visit[s]=i;
-				go(i,s+1,start);
-				++arr[i][v];
-				++arr[v][i];
-			}
+		answer.append(cur + " ");
+	}
+
+	private static Queue<int[]>[] getQueues(int n) {
+		Queue<int[]>[] q = new Queue[n + 1];
+		for (int i = 1; i <= n; i++) {
+			q[i] = new LinkedList<>();
 		}
-		
+		return q;
 	}
 }
