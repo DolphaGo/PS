@@ -1,4 +1,4 @@
 SELECT FirstName, LastName, City, State
-from Person
+from yogiyo.Person
 left join Address
-on Person.PersonId=Address.PersonId;
+on yogiyo.Person.PersonId=Address.PersonId;

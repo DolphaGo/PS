@@ -1,4 +1,4 @@
 SELECT Email
-FROM Person
+FROM yogiyo.Person
 GROUP BY Email
 HAVING COUNT(Email)>1
