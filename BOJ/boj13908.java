@@ -1,41 +1,47 @@
 import java.io.*;
 import java.util.*;
 
-public class boj13908 {
-	static int n,m,answer;
-	static boolean digit[]=new boolean[10];
-	static int push[];
+public class Main {
+	static int n, m, known, answer;
+	static int[] data;
+
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st=new StringTokenizer(br.readLine());
-		n=Integer.parseInt(st.nextToken());
-		m=Integer.parseInt(st.nextToken());
-		st=new StringTokenizer(br.readLine());
-		for(int i=0;i<m;i++) {
-			digit[Integer.parseInt(st.nextToken())]=true;
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		n = Integer.parseInt(st.nextToken());
+		m = Integer.parseInt(st.nextToken());
+
+		// 0~9까지 즉, 숫자를 비트로 표현하면 (1<<10 -1)로 표현할 수 있다.
+		known = 0;
+		if (m > 0) {
+			st = new StringTokenizer(br.readLine());
+			for (int i = 0; i < m; i++) {
+				final int value = Integer.parseInt(st.nextToken());
+				known |= 1 << value;
+			}
 		}
-		push=new int[n];
-		answer=0;
-		dfs(0);
+
+		data = new int[n];
+		answer = 0;
+		dfs(0, 0);
 		System.out.println(answer);
 	}
-	static boolean chk[]=new boolean[10];
-	static void dfs(int v) {
-		if(v==n) {
-			int cnt=0;
-			for(int i=0;i<n;i++) {
-				if(digit[push[i]]&&!chk[push[i]]) {
-					chk[push[i]]=true;
-					++cnt;
-				}
+
+	static void dfs(int v, int cnt) {
+		if (v == n) {
+			if (cnt == m) {
+				++answer;
 			}
-			if(cnt==m) answer++;
-			Arrays.fill(chk, false);
 			return;
 		}
-		for(int i=0;i<=9;i++) {
-			push[v]=i;
-			dfs(v+1);
+		for (int i = 0; i <= 9; i++) {
+			if ((known & (1 << i)) > 0) {
+				known ^= (1 << i);
+				dfs(v + 1, cnt + 1);
+				known |= (1 << i);
+			} else {
+				dfs(v + 1, cnt);
+			}
 		}
 	}
 }
