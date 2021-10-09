@@ -3,7 +3,6 @@ import java.util.*;
 
 public class Main {
 	static int n, m, known, answer;
-	static int[] data;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -21,7 +20,6 @@ public class Main {
 			}
 		}
 
-		data = new int[n];
 		answer = 0;
 		dfs(0, 0);
 		System.out.println(answer);
