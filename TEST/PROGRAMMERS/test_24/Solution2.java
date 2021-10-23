@@ -15,10 +15,6 @@ class Solution {
             currentValue = 10 * currentValue + startNumber;
             list.add(String.format("%010d", currentValue));
         }
-        String[] answer = new String[list.size()];
-        for (int i = 0; i < list.size(); i++) {
-            answer[i] = list.get(i);
-        }
-        return answer;
+        return list.toArray(new String[0]);
     }
 }
