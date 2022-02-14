@@ -1,0 +1,132 @@
+사용자 전체 조회
+        GET /users
+
+        사용자 등록
+        POST /users
+        requestBody -> user_id, user_name
+        리턴 값
+        {
+        "status" : "success",
+        "message" : "등록되었습니다.",
+        "user" : {
+        "user_no": 1,
+        "user_id": "user1",
+        "user_name": "user1"
+        }
+        }
+
+        사용자 수정
+        PUT /users/{user_no}
+        pathVariable -> user_no
+        requestBody -> user_id(user_id가 변경이 가능한 스펙인지는 모르겠지만), user_name
+        리턴 값
+        {
+        "status" : "success",
+        "message" : "수정되었습니다.",
+        "user" : {
+        "user_no": 1,
+        "user_id": "editUserId",
+        "user_name": "editUserName"
+        }
+        }
+
+        사용자 삭제
+        DELETE /users/{user_no}
+        pathVariable -> user_no
+
+        리턴 값
+        {
+        "status" : "success",
+        "message" : "삭제되었습니다.",
+        "user" : {
+        "user_no": 1,
+        "user_id": "user1",
+        "user_name": "user1"
+        }
+        }
+
+        사용자 조회
+        GET /users/{user_no}
+        pathVariable -> user_id
+
+        사용자에 대한 상세 정보가 출력되면 된다.
+        {
+        "status" : "success",
+        "message" : "조회되었습니다.",
+        "userInfo" : {
+        "user_no": 1,
+        "user_id": "user1",
+        "user_name": "user1"
+        }
+        }
+
+        각 사용자별 사진
+
+        기본적으로 어떤 사용자인지 이미 아는 상태에서 사진을 CRUD하는 것이기 때문에 requestURL로 user_no가 기본적으로 들어가게 되도록 설계한다.
+
+        사진 등록
+        POST /users/{user_no}/profile
+        RequestData로는 base64 기반의 이미지를 인풋으로 받으면 되고, multipart/form-data 형식으로 받아서 image/* 타입만 읽어들여서 사진데이터를 클라우드에 올려놓고, 해당 링크를 DB에 저장하면 된다.
+
+PathVariable : user_no
+
+{
+   "status" : "success",
+   "message" : "사진이 등록되었습니다.",
+    "userInfo" : {
+      "user_no": 1,
+      "user_id": "user1",
+      "user_name": "user1",
+      "profile": "https://www.cafe24.com/abcd/efgh.png"
+    }
+}
+
+사진 수정
+PUT /users/{user_no}/profile
+시스템이 어떤식인지는 모르겠지만, 단건 사진 필드를 의미한다면 기존 등록된 사진 필드를 지우고 새로 등록하는 방식도 가능할 것이다.
+
+PathVariable : user_no
+
+{
+   "status" : "success",
+   "message" : "수정되었습니다.",
+    "userInfo" : {
+      "user_no": 1,
+      "user_id": "user1",
+      "user_name": "user1",
+      "profile": "https://www.cafe24.com/abcd/efgh.png"
+    }
+}
+
+사진 삭제
+DELETE /users/{user_no}/profile
+
+PathVariable : user_no
+
+{
+   "status" : "success",
+   "message" : "삭제되었습니다.",
+    "userInfo" : {
+      "user_no": 1,
+      "user_id": "user1",
+      "user_name": "user1",
+      "profile": "https://www.cafe24.com/abcd/efgh.png"
+    }
+}
+
+사진 조회
+GET /users/{user_no}/profile
+
+PathVariable : user_no
+
+{
+   "status" : "success",
+   "message" : "조회성공.",
+    "userInfo" : {
+      "user_no": 1,
+      "user_id": "user1",
+      "user_name": "user1",
+      "profile": "https://www.cafe24.com/abcd/efgh.png"
+    }
+}
+
